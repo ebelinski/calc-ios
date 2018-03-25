@@ -61,6 +61,7 @@ struct Calculator {
   }
 
   mutating func removeLastAtom() {
+    if atoms.isEmpty { return }
     atoms.removeLast()
   }
 

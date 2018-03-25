@@ -6,13 +6,21 @@ struct CalculatorButtonFactory {
     var buttons: [CalculatorButton] = []
 
     for i in 0..<10 {
-      let button = CalculatorButton()
-      button.setTitle(String(9-i), for: .normal)
+      let button = CalculatorButton(withValue: String(9-i))
       button.tag = 9-i
       buttons.append(button)
     }
 
     return buttons
+  }
+
+  static func operatorButtons() -> [CalculatorButton] {
+    return [
+      CalculatorButton(withValue: "÷"),
+      CalculatorButton(withValue: "×"),
+      CalculatorButton(withValue: "-"),
+      CalculatorButton(withValue: "+")
+    ]
   }
 
 }

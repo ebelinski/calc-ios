@@ -35,15 +35,19 @@ struct Calculator {
   mutating func perform(action: Action) {
     switch action {
     case let .number(x): atoms.append(.value(x))
-    case .add: atoms.append(.symbol(.addition))
-    case .subtract: atoms.append(.symbol(.subtraction))
-    case .multiply: atoms.append(.symbol(.multiplication))
-    case .divide: atoms.append(.symbol(.division))
+    case .add: process(symbol: .addition)
+    case .subtract: process(symbol: .subtraction)
+    case .multiply: process(symbol: .multiplication)
+    case .divide: process(symbol: .division)
     case .addDecimal: break
     case .delete: break
     }
 
     delegate?.equationDidUpdate(withString: stringForAtoms())
+  }
+
+  mutating func process(symbol: Symbol) {
+    atoms.append(.symbol(symbol))
   }
 
   func stringForAtoms() -> String {

@@ -12,6 +12,7 @@ class CalculatorViewController: UIViewController {
     let screenLabel = UILabel()
     screenLabel.textColor = .black
     screenLabel.translatesAutoresizingMaskIntoConstraints = false
+    screenLabel.font = UIFont.systemFont(ofSize: 30)
     return screenLabel
   }()
 
@@ -27,7 +28,6 @@ class CalculatorViewController: UIViewController {
     screenLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: viewMargin).isActive = true
     screenLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: viewMargin).isActive = true
     screenLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -viewMargin).isActive = true
-    screenLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
   }
 
   func setUpButtons() {
@@ -76,13 +76,13 @@ class CalculatorViewController: UIViewController {
     let firstButton = buttons.first!
 
     for button in buttons {
-      button.heightAnchor.constraint(equalTo: firstButton.heightAnchor).isActive = true
+      button.heightAnchor.constraint(equalToConstant: 60).isActive = true
       button.widthAnchor.constraint(equalTo: firstButton.widthAnchor).isActive = true
     }
   }
 
   @objc func didPress(calculatorButton button: CalculatorButton) {
-    print("Pressed button with action \(button.action)")
+    screenLabel.text = "\(button.action)"
   }
 
 }

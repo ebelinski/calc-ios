@@ -85,7 +85,38 @@ struct Calculator {
   }
 
   func processEquation() -> String {
+    if atoms.isEmpty { return "0" }
+
+    if let last = atoms.last {
+      switch last {
+      case .value(_): return String(processAddition(atoms: atoms))
+      case .symbol(_): return "0" // Don't process if last element is a symbol
+      }
+    }
+
     return "0"
+  }
+
+  func processAddition(atoms: [Atom]) -> Int {
+    if atoms.isEmpty { return 0 }
+
+    for (offset: index, element: atom) in atoms.enumerated() {
+      switch atom {
+      case let .value(x):
+        if atoms.count == 1 {
+          return x
+        } else {
+          continue
+        }
+      case .symbol(.addition):
+        let before = Array(atoms[0..<index])
+        let after = Array(atoms[index+1..<atoms.count])
+        return processAddition(atoms: before) + processAddition(atoms: after)
+      case .symbol(_): fatalError("Unsupported symbol")
+      }
+    }
+
+    return 0
   }
 
 }

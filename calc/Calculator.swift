@@ -40,7 +40,7 @@ struct Calculator {
     case .multiply: process(symbol: .multiplication)
     case .divide: process(symbol: .division)
     case .addDecimal: break
-    case .delete: break
+    case .delete: removeLastAtom()
     }
 
     delegate?.equationDidUpdate(withString: stringForAtoms())
@@ -52,6 +52,10 @@ struct Calculator {
 
   mutating func process(symbol: Symbol) {
     atoms.append(.symbol(symbol))
+  }
+
+  mutating func removeLastAtom() {
+    atoms.removeLast()
   }
 
   func stringForAtoms() -> String {

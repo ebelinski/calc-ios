@@ -2,11 +2,11 @@ import UIKit
 
 class CalculatorViewController: UIViewController {
 
+  let calculator = Calculator()
+
   let viewMargin: CGFloat = 10
 
   let buttons = CalculatorButtonFactory.buttons()
-
-  var addedButtons: [CalculatorButton] = []
 
   let resultLabel: UILabel = {
     let resultLabel = UILabel()
@@ -69,7 +69,7 @@ class CalculatorViewController: UIViewController {
   func constrainButtonSizes() {
     let firstButton = buttons.first!
 
-    for button in addedButtons {
+    for button in buttons {
       button.heightAnchor.constraint(equalTo: firstButton.heightAnchor).isActive = true
       button.widthAnchor.constraint(equalTo: firstButton.widthAnchor).isActive = true
     }

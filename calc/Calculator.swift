@@ -47,6 +47,14 @@ struct Calculator {
   }
 
   mutating func process(value: Int) {
+    if let lastAtom = atoms.last {
+      switch lastAtom {
+      case let .value(x):
+        atoms[atoms.count-1] = .value(x * 10 + value)
+        return
+      case .symbol(_): break
+      }
+    }
     atoms.append(.value(value))
   }
 
@@ -115,7 +123,10 @@ struct Calculator {
       return processMultiplicationAndDivision(atoms: [.value(l * r)] + remainder)
     case let (.value(l), .symbol(.division), .value(r), remainder):
       return processMultiplicationAndDivision(atoms: [.value(l / r)] + remainder)
-    default: return processAdditionAndSubtraction(atoms: atoms)
+    default:
+      let prefix: [Atom] = Array(atoms.prefix(2))
+      let remainder: [Atom] = [.value(processMultiplicationAndDivision(atoms: Array(atoms.dropFirst(2))))]
+      return processAdditionAndSubtraction(atoms: prefix + remainder)
     }
   }
 
@@ -135,7 +146,7 @@ struct Calculator {
       return processAdditionAndSubtraction(atoms: [.value(l + r)] + remainder)
     case let (.value(l), .symbol(.subtraction), .value(r), remainder):
       return processAdditionAndSubtraction(atoms: [.value(l - r)] + remainder)
-    default: fatalError("Unexpected tuple value")
+    default: fatalError("Unexpected tuple value: \(tuple)")
     }
   }
 

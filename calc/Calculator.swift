@@ -4,6 +4,10 @@ protocol CalculatorDelegate: class {
   func equationDidUpdate(withString string: String)
 }
 
+enum CalculatorError: Error {
+  case divideByZero
+}
+
 struct Calculator {
 
   weak var delegate: CalculatorDelegate?
@@ -101,21 +105,28 @@ struct Calculator {
   }
 
   func processEquation() -> String {
-    return String(processCleanup(atoms: atoms))
+    do {
+      return try String(processCleanup(atoms: atoms))
+    } catch CalculatorError.divideByZero {
+      return "divide by zero error"
+    } catch {
+      return "unknown error"
+    }
+//    return String(processCleanup(atoms: atoms))
   }
 
-  func processCleanup(atoms: [Atom]) -> Int {
+  func processCleanup(atoms: [Atom]) throws -> Int {
     if let last = atoms.last {
       switch last {
-      case .value(_): return processMultiplicationAndDivision(atoms: atoms)
-      case .symbol(_): return processCleanup(atoms: Array(atoms.dropLast()))
+      case .value(_): return try processMultiplicationAndDivision(atoms: atoms)
+      case .symbol(_): return try processCleanup(atoms: Array(atoms.dropLast()))
       }
     }
 
     return 0 // no atoms
   }
 
-  func processMultiplicationAndDivision(atoms: [Atom]) -> Int {
+  func processMultiplicationAndDivision(atoms: [Atom]) throws -> Int {
     if atoms.isEmpty { return 0 }
     if atoms.count == 1 {
       switch atoms[0] {
@@ -128,12 +139,13 @@ struct Calculator {
 
     switch tuple {
     case let (.value(l), .symbol(.multiplication), .value(r), remainder):
-      return processMultiplicationAndDivision(atoms: [.value(l * r)] + remainder)
+      return try processMultiplicationAndDivision(atoms: [.value(l * r)] + remainder)
     case let (.value(l), .symbol(.division), .value(r), remainder):
-      return processMultiplicationAndDivision(atoms: [.value(l / r)] + remainder)
+      if r == 0 { throw CalculatorError.divideByZero }
+      return try processMultiplicationAndDivision(atoms: [.value(l / r)] + remainder)
     default:
       let prefix: [Atom] = Array(atoms.prefix(2))
-      let remainder: [Atom] = [.value(processMultiplicationAndDivision(atoms: Array(atoms.dropFirst(2))))]
+      let remainder: [Atom] = [.value(try processMultiplicationAndDivision(atoms: Array(atoms.dropFirst(2))))]
       return processAdditionAndSubtraction(atoms: prefix + remainder)
     }
   }

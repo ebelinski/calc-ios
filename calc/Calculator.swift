@@ -26,24 +26,35 @@ struct Calculator {
     case divisionSymbol
   }
 
-  var equationAtoms = [Atom]()
+  var atoms = [Atom]()
 
   mutating func perform(action: Action) {
     switch action {
-    case let .number(x): equationAtoms.append(.value(x))
-    case .add: equationAtoms.append(.additionSymbol)
-    case .subtract: equationAtoms.append(.subtractionSymbol)
-    case .multiply: equationAtoms.append(.multiplicationSymbol)
-    case .divide: equationAtoms.append(.divisionSymbol)
+    case let .number(x): atoms.append(.value(x))
+    case .add: atoms.append(.additionSymbol)
+    case .subtract: atoms.append(.subtractionSymbol)
+    case .multiply: atoms.append(.multiplicationSymbol)
+    case .divide: atoms.append(.divisionSymbol)
     case .addDecimal: break
     case .delete: break
     }
 
-    delegate?.equationDidUpdate(withString: stringForEquationAtoms())
+    delegate?.equationDidUpdate(withString: stringForAtoms())
   }
 
-  func stringForEquationAtoms() -> String {
-    return "foo"
+  func stringForAtoms() -> String {
+    return atoms.map { string(forAtom: $0) }
+                .reduce("") { $0 + " " + $1 }
+  }
+
+  func string(forAtom atom: Atom) -> String {
+    switch atom {
+    case let .value(x): return String(x)
+    case .additionSymbol: return "+"
+    case .subtractionSymbol: return "-"
+    case .multiplicationSymbol: return "×"
+    case .divisionSymbol: return "÷"
+    }
   }
 
 }

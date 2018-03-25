@@ -14,6 +14,7 @@
 		B673182E20675688002E490C /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673182D20675688002E490C /* Calculator.swift */; };
 		B67318302067D162002E490C /* CalculatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B673182F2067D162002E490C /* CalculatorButton.swift */; };
 		B67318322067D1D0002E490C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67318312067D1D0002E490C /* Color.swift */; };
+		B67318342067D4BB002E490C /* CalculatorButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67318332067D4BB002E490C /* CalculatorButtonFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B673182D20675688002E490C /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		B673182F2067D162002E490C /* CalculatorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButton.swift; sourceTree = "<group>"; };
 		B67318312067D1D0002E490C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B67318332067D4BB002E490C /* CalculatorButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +62,10 @@
 			children = (
 				B66F14482067508D00DEDE76 /* AppDelegate.swift */,
 				B66F144A2067508D00DEDE76 /* CalculatorViewController.swift */,
-				B67318312067D1D0002E490C /* Color.swift */,
+				B67318332067D4BB002E490C /* CalculatorButtonFactory.swift */,
 				B673182F2067D162002E490C /* CalculatorButton.swift */,
 				B673182D20675688002E490C /* Calculator.swift */,
+				B67318312067D1D0002E490C /* Color.swift */,
 				B66F144F2067508D00DEDE76 /* Assets.xcassets */,
 				B66F14512067508D00DEDE76 /* LaunchScreen.storyboard */,
 				B66F14542067508D00DEDE76 /* Info.plist */,
@@ -145,6 +148,7 @@
 				B66F14492067508D00DEDE76 /* AppDelegate.swift in Sources */,
 				B673182E20675688002E490C /* Calculator.swift in Sources */,
 				B67318322067D1D0002E490C /* Color.swift in Sources */,
+				B67318342067D4BB002E490C /* CalculatorButtonFactory.swift in Sources */,
 				B67318302067D162002E490C /* CalculatorButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

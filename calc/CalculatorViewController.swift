@@ -30,6 +30,8 @@ class CalculatorViewController: UIViewController {
     view.addSubview(resultLabel)
     resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     resultLabel.topAnchor.constraint(equalTo: addButton.bottomAnchor).isActive = true
+
+    CalculatorButtonFactory.digitButtons()
   }
 
   @objc func didPressAddButton() {

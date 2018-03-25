@@ -23,4 +23,11 @@ struct CalculatorButtonFactory {
     ]
   }
 
+  static func buttons() -> [CalculatorButton] {
+    let digitButtons = CalculatorButtonFactory.digitButtons()
+    let operatorButtons = CalculatorButtonFactory.operatorButtons()
+
+    return digitButtons + operatorButtons + [CalculatorButton(withValue: ".")]
+  }
+
 }

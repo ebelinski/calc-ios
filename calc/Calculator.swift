@@ -20,10 +20,14 @@ struct Calculator {
 
   enum Atom {
     case value(Int)
-    case additionSymbol
-    case subtractionSymbol
-    case multiplicationSymbol
-    case divisionSymbol
+    case symbol(Symbol)
+  }
+
+  enum Symbol {
+    case addition
+    case subtraction
+    case multiplication
+    case division
   }
 
   var atoms = [Atom]()
@@ -31,10 +35,10 @@ struct Calculator {
   mutating func perform(action: Action) {
     switch action {
     case let .number(x): atoms.append(.value(x))
-    case .add: atoms.append(.additionSymbol)
-    case .subtract: atoms.append(.subtractionSymbol)
-    case .multiply: atoms.append(.multiplicationSymbol)
-    case .divide: atoms.append(.divisionSymbol)
+    case .add: atoms.append(.symbol(.addition))
+    case .subtract: atoms.append(.symbol(.subtraction))
+    case .multiply: atoms.append(.symbol(.multiplication))
+    case .divide: atoms.append(.symbol(.division))
     case .addDecimal: break
     case .delete: break
     }
@@ -50,10 +54,10 @@ struct Calculator {
   func string(forAtom atom: Atom) -> String {
     switch atom {
     case let .value(x): return String(x)
-    case .additionSymbol: return "+"
-    case .subtractionSymbol: return "-"
-    case .multiplicationSymbol: return "×"
-    case .divisionSymbol: return "÷"
+    case .symbol(.addition): return "+"
+    case .symbol(.subtraction): return "-"
+    case .symbol(.multiplication): return "×"
+    case .symbol(.division): return "÷"
     }
   }
 

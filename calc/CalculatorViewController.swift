@@ -35,6 +35,7 @@ class CalculatorViewController: UIViewController {
     setUpButtonRow(index: 1)
     setUpButtonRow(index: 2)
     setUpButtonRow(index: 3, lastRow: true)
+    setButtonActions()
     constrainButtonSizes()
   }
   
@@ -65,6 +66,12 @@ class CalculatorViewController: UIViewController {
     previousViewInRow!.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -viewMargin).isActive = true
   }
 
+  func setButtonActions() {
+    buttons.forEach { $0.addTarget(self,
+                                   action: #selector(didPress(calculatorButton:)),
+                                   for: .touchUpInside) }
+  }
+
   func constrainButtonSizes() {
     let firstButton = buttons.first!
 
@@ -72,6 +79,10 @@ class CalculatorViewController: UIViewController {
       button.heightAnchor.constraint(equalTo: firstButton.heightAnchor).isActive = true
       button.widthAnchor.constraint(equalTo: firstButton.widthAnchor).isActive = true
     }
+  }
+
+  @objc func didPress(calculatorButton button: CalculatorButton) {
+    print("Pressed button with action \(button.action)")
   }
 
 }

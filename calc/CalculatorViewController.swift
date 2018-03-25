@@ -13,6 +13,7 @@ class CalculatorViewController: UIViewController {
     screenLabel.textColor = .black
     screenLabel.translatesAutoresizingMaskIntoConstraints = false
     screenLabel.font = UIFont.systemFont(ofSize: 30)
+    screenLabel.numberOfLines = 0
     return screenLabel
   }()
 

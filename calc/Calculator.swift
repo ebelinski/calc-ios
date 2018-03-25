@@ -66,8 +66,11 @@ struct Calculator {
   }
 
   func stringForAtoms() -> String {
-    return atoms.map { string(forAtom: $0) }
-                .reduce("") { $0 + " " + $1 }
+    let equationString = atoms.map { string(forAtom: $0) }
+                              .reduce("") { $0 + " " + $1 }
+                              .trimmingCharacters(in: .whitespaces)
+
+    return "\(equationString) \n\n= \(processEquation())"
   }
 
   func string(forAtom atom: Atom) -> String {
@@ -78,6 +81,10 @@ struct Calculator {
     case .symbol(.multiplication): return "×"
     case .symbol(.division): return "÷"
     }
+  }
+
+  func processEquation() -> String {
+    return "0"
   }
 
 }

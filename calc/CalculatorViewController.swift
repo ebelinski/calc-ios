@@ -2,8 +2,8 @@ import UIKit
 
 class CalculatorViewController: UIViewController {
 
-  let addButton: UIButton = {
-    let addButton = UIButton()
+  let addButton: CalculatorButton = {
+    let addButton = CalculatorButton()
     addButton.translatesAutoresizingMaskIntoConstraints = false
     addButton.setTitle("+", for: .normal)
     addButton.setTitleColor(.blue, for: .normal)

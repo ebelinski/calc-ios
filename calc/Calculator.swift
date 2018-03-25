@@ -91,7 +91,7 @@ struct Calculator {
   func processCleanup(atoms: [Atom]) -> Int {
     if let last = atoms.last {
       switch last {
-      case .value(_): return processAddition(atoms: atoms)
+      case .value(_): return processAdditionAndSubtraction(atoms: atoms)
       case .symbol(_): return processCleanup(atoms: Array(atoms.dropLast()))
       }
     }
@@ -99,26 +99,24 @@ struct Calculator {
     return 0 // no atoms
   }
 
-  func processAddition(atoms: [Atom]) -> Int {
+  func processAdditionAndSubtraction(atoms: [Atom]) -> Int {
     if atoms.isEmpty { return 0 }
-
-    for (offset: index, element: atom) in atoms.enumerated() {
-      switch atom {
-      case let .value(x):
-        if atoms.count == 1 {
-          return x
-        } else {
-          continue
-        }
-      case .symbol(.addition):
-        let before = Array(atoms[0..<index])
-        let after = Array(atoms[index+1..<atoms.count])
-        return processAddition(atoms: before) + processAddition(atoms: after)
-      case .symbol(_): fatalError("Unsupported symbol")
+    if atoms.count == 1 {
+      switch atoms[0] {
+      case let .value(x): return x
+      case .symbol(_): fatalError("Unexpected symbol")
       }
     }
 
-    return 0
+    let tuple = (atoms[0], atoms[1], atoms[2], Array(atoms.dropFirst(3)))
+
+    switch tuple {
+    case let (.value(l), .symbol(.addition), .value(r), remainder):
+      return processAdditionAndSubtraction(atoms: [.value(l + r)] + remainder)
+    case let (.value(l), .symbol(.subtraction), .value(r), remainder):
+      return processAdditionAndSubtraction(atoms: [.value(l - r)] + remainder)
+    default: fatalError("Unexpected tuple value")
+    }
   }
 
 }

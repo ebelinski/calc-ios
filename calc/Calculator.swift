@@ -91,12 +91,32 @@ struct Calculator {
   func processCleanup(atoms: [Atom]) -> Int {
     if let last = atoms.last {
       switch last {
-      case .value(_): return processAdditionAndSubtraction(atoms: atoms)
+      case .value(_): return processMultiplicationAndDivision(atoms: atoms)
       case .symbol(_): return processCleanup(atoms: Array(atoms.dropLast()))
       }
     }
 
     return 0 // no atoms
+  }
+
+  func processMultiplicationAndDivision(atoms: [Atom]) -> Int {
+    if atoms.isEmpty { return 0 }
+    if atoms.count == 1 {
+      switch atoms[0] {
+      case let .value(x): return x
+      case .symbol(_): fatalError("Unexpected symbol")
+      }
+    }
+
+    let tuple = (atoms[0], atoms[1], atoms[2], Array(atoms.dropFirst(3)))
+
+    switch tuple {
+    case let (.value(l), .symbol(.multiplication), .value(r), remainder):
+      return processMultiplicationAndDivision(atoms: [.value(l * r)] + remainder)
+    case let (.value(l), .symbol(.division), .value(r), remainder):
+      return processMultiplicationAndDivision(atoms: [.value(l / r)] + remainder)
+    default: return processAdditionAndSubtraction(atoms: atoms)
+    }
   }
 
   func processAdditionAndSubtraction(atoms: [Atom]) -> Int {

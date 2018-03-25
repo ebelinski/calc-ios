@@ -8,26 +8,26 @@ class CalculatorViewController: UIViewController {
 
   let buttons = CalculatorButtonFactory.buttons()
 
-  let resultLabel: UILabel = {
-    let resultLabel = UILabel()
-    resultLabel.textColor = .black
-    resultLabel.translatesAutoresizingMaskIntoConstraints = false
-    return resultLabel
+  let screenLabel: UILabel = {
+    let screenLabel = UILabel()
+    screenLabel.textColor = .black
+    screenLabel.translatesAutoresizingMaskIntoConstraints = false
+    return screenLabel
   }()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    setUpResultsLabel()
+    setUpScreenLabel()
     setUpButtons()
   }
 
-  func setUpResultsLabel() {
-    view.addSubview(resultLabel)
-    resultLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: viewMargin).isActive = true
-    resultLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: viewMargin).isActive = true
-    resultLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -viewMargin).isActive = true
-    resultLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+  func setUpScreenLabel() {
+    view.addSubview(screenLabel)
+    screenLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: viewMargin).isActive = true
+    screenLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: viewMargin).isActive = true
+    screenLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -viewMargin).isActive = true
+    screenLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
   }
 
   func setUpButtons() {

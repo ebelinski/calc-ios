@@ -16,6 +16,7 @@
 		B67318322067D1D0002E490C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67318312067D1D0002E490C /* Color.swift */; };
 		B67318342067D4BB002E490C /* CalculatorButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67318332067D4BB002E490C /* CalculatorButtonFactory.swift */; };
 		B67318362067D6ED002E490C /* CalculatorOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67318352067D6ED002E490C /* CalculatorOperation.swift */; };
+		B673183A206865F6002E490C /* CalculatorLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6731839206865F6002E490C /* CalculatorLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		B67318312067D1D0002E490C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B67318332067D4BB002E490C /* CalculatorButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonFactory.swift; sourceTree = "<group>"; };
 		B67318352067D6ED002E490C /* CalculatorOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorOperation.swift; sourceTree = "<group>"; };
+		B6731839206865F6002E490C /* CalculatorLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				B66F14482067508D00DEDE76 /* AppDelegate.swift */,
 				B66F144A2067508D00DEDE76 /* CalculatorViewController.swift */,
+				B6731839206865F6002E490C /* CalculatorLabel.swift */,
 				B67318352067D6ED002E490C /* CalculatorOperation.swift */,
 				B67318332067D4BB002E490C /* CalculatorButtonFactory.swift */,
 				B673182F2067D162002E490C /* CalculatorButton.swift */,
@@ -149,6 +152,7 @@
 			files = (
 				B66F144B2067508D00DEDE76 /* CalculatorViewController.swift in Sources */,
 				B66F14492067508D00DEDE76 /* AppDelegate.swift in Sources */,
+				B673183A206865F6002E490C /* CalculatorLabel.swift in Sources */,
 				B673182E20675688002E490C /* Calculator.swift in Sources */,
 				B67318322067D1D0002E490C /* Color.swift in Sources */,
 				B67318342067D4BB002E490C /* CalculatorButtonFactory.swift in Sources */,

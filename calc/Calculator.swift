@@ -1,7 +1,8 @@
 import Foundation
 
 protocol CalculatorDelegate: class {
-  func equationDidUpdate(withString string: String)
+  func equationDidUpdate(withInputString inputString: String,
+                         andOutputString outputString: String)
 }
 
 enum CalculatorError: Error {
@@ -47,7 +48,8 @@ struct Calculator {
     case .delete: processDeleteAction()
     }
 
-    delegate?.equationDidUpdate(withString: stringForAtoms())
+    let (input, output) = inputOutputForAtoms()
+    delegate?.equationDidUpdate(withInputString: input, andOutputString: output)
   }
 
   mutating func process(value: Int) {
@@ -86,12 +88,12 @@ struct Calculator {
     }
   }
 
-  func stringForAtoms() -> String {
+  func inputOutputForAtoms() -> (String, String) {
     let equationString = atoms.map { string(forAtom: $0) }
                               .reduce("") { $0 + " " + $1 }
                               .trimmingCharacters(in: .whitespaces)
 
-    return "\(equationString) \n\n= \(processEquation())"
+    return (equationString, processEquation())
   }
 
   func string(forAtom atom: Atom) -> String {

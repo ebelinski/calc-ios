@@ -8,28 +8,29 @@ class CalculatorViewController: UIViewController {
 
   let buttons = CalculatorButtonFactory.buttons()
 
-  let screenLabel: UILabel = {
-    let screenLabel = UILabel()
-    screenLabel.textColor = .black
-    screenLabel.translatesAutoresizingMaskIntoConstraints = false
-    screenLabel.font = UIFont.systemFont(ofSize: 30)
-    screenLabel.numberOfLines = 0
-    return screenLabel
-  }()
+  let inputLabel = CalculatorLabel()
+  let outputLabel = CalculatorLabel()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    setUpScreenLabel()
+    setUpLabels()
     setUpButtons()
     calculator.delegate = self
   }
 
-  func setUpScreenLabel() {
-    view.addSubview(screenLabel)
-    screenLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: viewMargin).isActive = true
-    screenLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: viewMargin).isActive = true
-    screenLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -viewMargin).isActive = true
+  func setUpLabels() {
+    view.addSubview(inputLabel)
+    inputLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: viewMargin).isActive = true
+    inputLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: viewMargin).isActive = true
+    inputLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -viewMargin).isActive = true
+
+    view.addSubview(outputLabel)
+    outputLabel.topAnchor.constraint(equalTo: inputLabel.bottomAnchor, constant: viewMargin).isActive = true
+    outputLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: viewMargin).isActive = true
+    outputLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -viewMargin).isActive = true
+
+    inputLabel.heightAnchor.constraint(equalTo: outputLabel.heightAnchor).isActive = true
   }
 
   func setUpButtons() {
@@ -90,8 +91,10 @@ class CalculatorViewController: UIViewController {
 
 extension CalculatorViewController: CalculatorDelegate {
 
-  func equationDidUpdate(withString string: String) {
-    screenLabel.text = string
+  func equationDidUpdate(withInputString inputString: String,
+                         andOutputString outputString: String) {
+    inputLabel.text = inputString
+    outputLabel.text = outputString
   }
 
 }

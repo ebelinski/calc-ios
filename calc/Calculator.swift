@@ -85,16 +85,18 @@ struct Calculator {
   }
 
   func processEquation() -> String {
-    if atoms.isEmpty { return "0" }
+    return String(processCleanup(atoms: atoms))
+  }
 
+  func processCleanup(atoms: [Atom]) -> Int {
     if let last = atoms.last {
       switch last {
-      case .value(_): return String(processAddition(atoms: atoms))
-      case .symbol(_): return "0" // Don't process if last element is a symbol
+      case .value(_): return processAddition(atoms: atoms)
+      case .symbol(_): return processCleanup(atoms: Array(atoms.dropLast()))
       }
     }
 
-    return "0"
+    return 0 // no atoms
   }
 
   func processAddition(atoms: [Atom]) -> Int {

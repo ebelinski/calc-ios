@@ -13,16 +13,28 @@ class CalculatorViewController: UIViewController {
     return addButton
   }()
 
+  let resultLabel: UILabel = {
+    let resultLabel = UILabel()
+    resultLabel.textColor = .black
+    resultLabel.translatesAutoresizingMaskIntoConstraints = false
+    return resultLabel
+  }()
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
     view.addSubview(addButton)
     addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     addButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+
+    view.addSubview(resultLabel)
+    resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    resultLabel.topAnchor.constraint(equalTo: addButton.bottomAnchor).isActive = true
   }
 
   @objc func didPressAddButton() {
-    print("Pressed add button")
+    let result = Calculator.add(2, 3)
+    resultLabel.text = String(result)
   }
 
 }

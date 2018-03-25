@@ -34,7 +34,7 @@ struct Calculator {
 
   mutating func perform(action: Action) {
     switch action {
-    case let .number(x): atoms.append(.value(x))
+    case let .number(x): process(value: x)
     case .add: process(symbol: .addition)
     case .subtract: process(symbol: .subtraction)
     case .multiply: process(symbol: .multiplication)
@@ -44,6 +44,10 @@ struct Calculator {
     }
 
     delegate?.equationDidUpdate(withString: stringForAtoms())
+  }
+
+  mutating func process(value: Int) {
+    atoms.append(.value(value))
   }
 
   mutating func process(symbol: Symbol) {

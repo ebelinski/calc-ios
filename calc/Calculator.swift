@@ -51,6 +51,12 @@ struct Calculator {
   }
 
   mutating func process(symbol: Symbol) {
+    if let lastAtom = atoms.last {
+      switch lastAtom {
+      case .value(_): break
+      case .symbol(_): return
+      }
+    }
     atoms.append(.symbol(symbol))
   }
 

@@ -2,19 +2,9 @@ import UIKit
 
 class CalculatorButton: UIButton {
 
-  enum Action {
-    case number(Int)
-    case add
-    case subtract
-    case multiply
-    case divide
-    case addDecimal
-    case delete
-  }
+  let action: Calculator.Action
 
-  let action: Action
-
-  init(withAction action: Action) {
+  init(withAction action: Calculator.Action) {
     self.action = action
 
     super.init(frame: .zero)

@@ -2,7 +2,7 @@ import UIKit
 
 class CalculatorViewController: UIViewController {
 
-  let calculator = Calculator()
+  var calculator = Calculator()
 
   let viewMargin: CGFloat = 10
 
@@ -21,6 +21,7 @@ class CalculatorViewController: UIViewController {
 
     setUpScreenLabel()
     setUpButtons()
+    calculator.delegate = self
   }
 
   func setUpScreenLabel() {
@@ -74,15 +75,22 @@ class CalculatorViewController: UIViewController {
 
   func constrainButtonSizes() {
     let firstButton = buttons.first!
-
-    for button in buttons {
-      button.heightAnchor.constraint(equalToConstant: 60).isActive = true
-      button.widthAnchor.constraint(equalTo: firstButton.widthAnchor).isActive = true
+    buttons.forEach {
+      $0.heightAnchor.constraint(equalToConstant: 60).isActive = true
+      $0.widthAnchor.constraint(equalTo: firstButton.widthAnchor).isActive = true
     }
   }
 
   @objc func didPress(calculatorButton button: CalculatorButton) {
-    screenLabel.text = "\(button.action)"
+    calculator.perform(action: button.action)
+  }
+
+}
+
+extension CalculatorViewController: CalculatorDelegate {
+
+  func equationDidUpdate(withString string: String) {
+    screenLabel.text = string
   }
 
 }

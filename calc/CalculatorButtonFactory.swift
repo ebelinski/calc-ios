@@ -3,7 +3,7 @@ import Foundation
 struct CalculatorButtonFactory {
 
   static func buttons() -> [CalculatorButton] {
-    let actions: [CalculatorButton.Action] = [
+    let actions: [Calculator.Action] = [
       .number(9), .number(8), .number(7), .divide,
       .number(6), .number(5), .number(4), .multiply,
       .number(3), .number(2), .number(1), .subtract,

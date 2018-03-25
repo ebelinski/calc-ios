@@ -1,12 +1,12 @@
 import Foundation
 
-protocol CalculatorDelegate {
+protocol CalculatorDelegate: class {
   func equationDidUpdate(withString string: String)
 }
 
 struct Calculator {
 
-  var delegate: CalculatorDelegate?
+  weak var delegate: CalculatorDelegate?
 
   enum Action {
     case number(Int)

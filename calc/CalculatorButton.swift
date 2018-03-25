@@ -2,10 +2,34 @@ import UIKit
 
 class CalculatorButton: UIButton {
 
-  init(withValue value: String) {
+  enum Action {
+    case number(Int)
+    case add
+    case subtract
+    case multiply
+    case divide
+    case addDecimal
+    case delete
+  }
+
+  let action: Action
+
+  init(withAction action: Action) {
+    self.action = action
+
     super.init(frame: .zero)
 
-    setTitle(value, for: .normal)
+    var title: String?
+    switch action {
+    case let .number(x): title = String(x)
+    case .add: title = "+"
+    case .subtract: title = "-"
+    case .multiply: title = "×"
+    case .divide: title = "÷"
+    case .addDecimal: title = "."
+    case .delete: title = "<"
+    }
+    setTitle(title, for: .normal)
   }
   
   required init?(coder aDecoder: NSCoder) {

@@ -46,7 +46,6 @@ class CalculatorViewController: UIViewController {
 
     for button in rowDigitButtons {
       view.addSubview(button)
-      addedButtons.append(button)
 
       button.topAnchor.constraint(equalTo: lastViewInPreviousRow.bottomAnchor, constant: viewMargin).isActive = true
 

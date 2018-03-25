@@ -2,32 +2,25 @@ import Foundation
 
 struct CalculatorButtonFactory {
 
-  static func digitButtons() -> [CalculatorButton] {
-    var buttons: [CalculatorButton] = []
-
-    for i in 0..<10 {
-      let button = CalculatorButton(withValue: String(9-i))
-      button.tag = 9-i
-      buttons.append(button)
-    }
-
-    return buttons
-  }
-
-  static func operatorButtons() -> [CalculatorButton] {
-    return [
-      CalculatorButton(withValue: "÷"),
-      CalculatorButton(withValue: "×"),
-      CalculatorButton(withValue: "-"),
-      CalculatorButton(withValue: "+")
-    ]
-  }
-
   static func buttons() -> [CalculatorButton] {
-    let digitButtons = CalculatorButtonFactory.digitButtons()
-    let operatorButtons = CalculatorButtonFactory.operatorButtons()
-
-    return digitButtons + operatorButtons + [CalculatorButton(withValue: ".")] + [CalculatorButton(withValue: "<")]
+    return [
+      CalculatorButton(withAction: .number(9)),
+      CalculatorButton(withAction: .number(8)),
+      CalculatorButton(withAction: .number(7)),
+      CalculatorButton(withAction: .divide),
+      CalculatorButton(withAction: .number(6)),
+      CalculatorButton(withAction: .number(5)),
+      CalculatorButton(withAction: .number(4)),
+      CalculatorButton(withAction: .multiply),
+      CalculatorButton(withAction: .number(3)),
+      CalculatorButton(withAction: .number(2)),
+      CalculatorButton(withAction: .number(1)),
+      CalculatorButton(withAction: .subtract),
+      CalculatorButton(withAction: .number(0)),
+      CalculatorButton(withAction: .addDecimal),
+      CalculatorButton(withAction: .delete),
+      CalculatorButton(withAction: .add),
+    ]
   }
 
 }

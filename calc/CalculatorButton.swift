@@ -29,7 +29,7 @@ class CalculatorButton: UIButton {
   override func didMoveToSuperview() {
     super.didMoveToSuperview()
     translatesAutoresizingMaskIntoConstraints = false
-    setTitleColor(.blue, for: .normal)
+    setTitleColor(.white, for: .normal)
     backgroundColor = Color.elementBackground
     titleLabel?.font = UIFont.systemFont(ofSize: 30)
   }

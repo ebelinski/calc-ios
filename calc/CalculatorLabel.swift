@@ -6,7 +6,7 @@ class CalculatorLabel: UILabel {
     super.didMoveToSuperview()
     translatesAutoresizingMaskIntoConstraints = false
     textColor = .white
-    backgroundColor = Color.elementBackground
+    backgroundColor = BackgroundColor.element
     font = UIFont(name: "Menlo-Regular", size: 30)
     numberOfLines = 0
   }

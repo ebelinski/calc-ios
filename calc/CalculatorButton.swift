@@ -31,7 +31,7 @@ class CalculatorButton: UIButton {
     translatesAutoresizingMaskIntoConstraints = false
     setTitleColor(.white, for: .normal)
     backgroundColor = Color.elementBackground
-    titleLabel?.font = UIFont.systemFont(ofSize: 30)
+    titleLabel?.font = UIFont(name: "Menlo-Regular", size: 30)
   }
 
 }

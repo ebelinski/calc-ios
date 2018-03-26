@@ -7,7 +7,7 @@ class CalculatorLabel: UILabel {
     translatesAutoresizingMaskIntoConstraints = false
     textColor = .white
     backgroundColor = Color.elementBackground
-    font = UIFont.systemFont(ofSize: 30)
+    font = UIFont(name: "Menlo-Regular", size: 30)
     numberOfLines = 0
   }
 
